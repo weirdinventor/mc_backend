@@ -21,16 +21,28 @@ export const dingConfiguration = {
     otpCodeBypass: process.env.SMS_CODE_OTP_BYPASS,
 };
 
-export const dataSourceConfig: PostgresConnectionOptions = {
-    type: "postgres",
-    host: process.env.DB_HOST,
-    port: +process.env.DB_PORT,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    logging: process.env.DB_LOGGING === "true",
-    synchronize: true,
-};
+export const dataSourceConfig: PostgresConnectionOptions = process.env.DATABASE_URL
+    ? {
+          type: "postgres",
+          url: process.env.DATABASE_URL,
+          ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+          synchronize: true,
+          logging: process.env.DB_LOGGING === "true",
+          entities: ["dist/app/modules/**/*.entity.js"],
+          migrations: ["dist/migrations/*.js"],
+      }
+    : {
+          type: "postgres",
+          host: process.env.DB_HOST,
+          port: +process.env.DB_PORT,
+          username: process.env.DB_USERNAME,
+          password: process.env.DB_PASSWORD,
+          database: process.env.DB_NAME,
+          logging: process.env.DB_LOGGING === "true",
+          synchronize: true,
+          entities: ["dist/app/modules/**/*.entity.js"],
+          migrations: ["dist/migrations/*.js"],
+      };
 
 const base64EncodedFirebaseConfig = process.env.FIREBASE_CONFIG;
 if (!base64EncodedFirebaseConfig) {
