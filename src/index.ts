@@ -6,7 +6,7 @@ import express from 'express';
 import { configureExpress } from './app/config/express';
 import {EventProvider, MessageModule} from "./app/config/MessageModule";
 import {Redis} from "ioredis";
-// import {redis_config} from "./app/config/config";
+import {redis_config} from "./app/config/config";
 import {EventManager} from "./messages/utilsAndConfugrations/eventsConfig/EventManager";
 import {UserSignedUp} from "./messages/events/UserSignedUp";
 import {HandleUserSignedUp} from "./app/modules/handlers/HandleUserSignedUp";

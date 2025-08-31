@@ -64,12 +64,12 @@ export const firebaseStorage = {storage: getStorage(firebaseAdmin), bucketName: 
 
 export const contentCount = +process.env.CONTENT_COUNT;
 
-// export const redis_config = {
-//     port: process.env.REDIS_PORT ? +process.env.REDIS_PORT : 6379,
-//     host: process.env.REDIS_HOST ? process.env.REDIS_HOST : "localhost",
-//     password: process.env.REDIS_PASSWORD,
-//     username: process.env.REDIS_USERNAME,
-// };
+export const redis_config = {
+    port: process.env.REDIS_PORT ? +process.env.REDIS_PORT : 6379,
+    host: process.env.REDIS_HOST ? process.env.REDIS_HOST : "localhost",
+    password: process.env.REDIS_PASSWORD,
+    username: process.env.REDIS_USERNAME,
+};
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
