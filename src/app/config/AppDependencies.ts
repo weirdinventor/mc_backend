@@ -14,7 +14,7 @@ import {
     googleConfig,
     initializeAndroidPublisher,
     jwtConfig,
-    redis_config,
+    // redis_config,
     sendgridConfig,
     videoSdkConfig,
 } from "./config";
@@ -241,7 +241,7 @@ dotenv.config();
 export class AppDependencies extends Container {
     async init() {
         const messageModule = new MessageModule(this);
-        const redis = new Redis(redis_config.port, redis_config.host);
+        // const redis = new Redis(redis_config.port, redis_config.host);
 
         const myDataSource = new DataSource({
             ...dataSourceConfig,
@@ -590,12 +590,12 @@ export class AppDependencies extends Container {
 
         this.bind(CreatePurchase).toSelf();
 
-        messageModule.configure({
-            provider: {
-                name: EventProvider.REDIS,
-                redis,
-            },
-        });
+        // messageModule.configure({
+        //     provider: {
+        //         name: EventProvider.REDIS,
+        //         redis,
+        //     },
+        // });
 
         await messageModule.register((em: EventManager) => {
             HandlersModule.configureHandlers(em);
