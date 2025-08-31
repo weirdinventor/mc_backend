@@ -1,0 +1,15 @@
+# Fichier .dockerignore pour optimiser la construction
+node_modules
+npm-debug.log
+dist
+.git
+.gitignore
+README.md
+.env
+.env.local
+.env.example
+.nyc_output
+coverage
+.vscode
+.DS_Store
+*.log
